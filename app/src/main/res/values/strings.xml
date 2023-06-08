@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TeknorixTest</string>
+    <string name="total_count">Total count = 0</string>
+    <string name="profile_image">Profile image</string>
+    <string name="name">Name :</string>
+    <string name="email">Email :</string>
+</resources>
