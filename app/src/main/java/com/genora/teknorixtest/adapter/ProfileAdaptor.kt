@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.genora.teknorixtest.Models.Data
 import com.genora.teknorixtest.R
 import com.genora.teknorixtest.activities.DetailedProfile
-import com.squareup.picasso.Picasso
 
 
 class ProfileAdaptor(private val profileList: List<Data>): RecyclerView.Adapter<ProfileAdaptor.ViewHolder>() {
@@ -27,10 +29,10 @@ class ProfileAdaptor(private val profileList: List<Data>): RecyclerView.Adapter<
         holder.profileData = profileList[position]
 
         val url = profileList[position].avatar
-        Picasso.get()
+        Glide.with(holder.itemView.context)
             .load(url)
-            .resize(150, 150)
-            .centerCrop()
+            .override(150,150)
+            .transform(CenterInside(), RoundedCorners(24))
             .into(holder.profileAvatar)
 
         val fullName = "${profileList[position].first_name} ${profileList[position].last_name}"

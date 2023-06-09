@@ -6,12 +6,14 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.genora.teknorixtest.Models.Data
 import com.genora.teknorixtest.Models.ProfileData1
 import com.genora.teknorixtest.R
 import com.genora.teknorixtest.Services.ProfileService
 import com.genora.teknorixtest.Services.ServiceBuilder
-import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,11 +77,12 @@ class DetailedProfile : AppCompatActivity() {
                     tv_fullName.text = fullName
                     tv_email.text = sProfile[position].email
                     val url = sProfile[position].avatar
-                        Picasso.get()
-                            .load(url)
-                            .resize(350, 350)
-                            .centerCrop()
-                            .into(ivProfileImage)
+
+                    Glide.with(this@DetailedProfile)
+                        .load(url)
+                        .override(350,350)
+                        .transform(CenterInside(),RoundedCorners(24))
+                        .into(ivProfileImage)
                 }
             }
 
